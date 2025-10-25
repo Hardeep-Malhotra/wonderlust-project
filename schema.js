@@ -20,12 +20,7 @@
 // });
 
 // // Review schema
-// module.exports.reviewSchema = Joi.object({
-//   review: Joi.object({
-//     rating: Joi.number().required().min(1).max(5),
-//     comment: Joi.string().required()
-//   }).required()
-// });
+
 const Joi = require('joi');
 
 // Listing schema
@@ -49,5 +44,11 @@ module.exports.listingSchema = Joi.object({
       "Skiing","Luxury"
     ).messages({ "any.required": "Category is required", "any.only": "Invalid category selected" }),
     image: Joi.object({ url: Joi.string().allow("", null) }).optional()
+  }).required()
+});
+module.exports.reviewSchema = Joi.object({
+  review: Joi.object({
+    rating: Joi.number().required().min(1).max(5),
+    comment: Joi.string().required()
   }).required()
 });
