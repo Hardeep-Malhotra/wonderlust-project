@@ -6,24 +6,43 @@ module.exports.renderSignupForm = (req, res) => {
     res.render("users/signup");
 };
 
+
 module.exports.signup = async (req, res, next) => {
     try {
         const { username, email, password } = req.body;
+
+        // 1️⃣ Check if username already exists
+        const existingUser = await User.findOne({ username });
+        if (existingUser) {
+            req.flash("error", "This username is already taken. Please login.");
+            return res.redirect("/login"); // redirect to login page
+        }
+
+        // 2️⃣ Check if email already exists
+        const existingEmail = await User.findOne({ email });
+        if (existingEmail) {
+            req.flash("error", "This email is already registered. Please login.");
+            return res.redirect("/login");
+        }
+
+        // 3️⃣ Create a new user
         const newUser = new User({ username, email });
         const registeredUser = await User.register(newUser, password);
 
+        // 4️⃣ Auto-login the user
         req.login(registeredUser, (err) => {
             if (err) return next(err);
-            // req.flash("success", `Welcome to WanderLust, ${registeredUser.username}!`);
-            req.flash("success", `Welcome to WanderLust, ${registeredUser.username}!`);
-
+            req.flash("success", `Welcome ${registeredUser.username}! You are now logged in.`);
             res.redirect("/listings");
         });
+
     } catch (e) {
-        req.flash("error", e.message);
+        console.log("Signup Error:", e);  // log the error in server console
+        req.flash("error", "Something went wrong during signup: " + e.message);
         res.redirect("/signup");
     }
 };
+
 
 module.exports.renderLoginForm = (req, res) => {
     res.render("users/login");
