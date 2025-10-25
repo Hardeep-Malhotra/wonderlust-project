@@ -1,0 +1,112 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-8 offset-2">
+      <h3 class="mb-4">Create a New Listing</h3>
+      <form method="POST" action="/listings" enctype="multipart/form-data" novalidate class="needs-validation">
+
+        <!-- Title -->
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" name="listing[title]" id="title" required class="form-control">
+          <div class="invalid-feedback">Please provide a title.</div>
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea name="listing[description]" id="description" rows="4" required class="form-control"></textarea>
+          <div class="invalid-feedback">Please provide a description.</div>
+        </div>
+
+        <!-- Category -->
+        <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <select name="listing[category]" id="category" class="form-select" required>
+            <option value="">Select a category</option>
+            <% const categories = [
+              "Trending","Rooms","Iconic Cities","Mountains","Castles","Amazing Pools",
+              "Camping","Tropical","Lakefront","Relaxation","Arctic","Pet Friendly",
+              "Urban","Beachfront","Historical","Tiny Homes","Art & Culture","Stargazing",
+              "Skiing","Luxury"
+            ]; %>
+            <% categories.forEach(cat => { %>
+              <option value="<%= cat %>"><%= cat %></option>
+            <% }) %>
+          </select>
+          <div class="invalid-feedback">Please select a category.</div>
+        </div>
+
+        <!-- Image -->
+        <div class="mb-3">
+          <label for="image" class="form-label">Upload Image</label>
+          <input type="file" name="listing[image]" id="image" class="form-control">
+        </div>
+
+        <!-- Price + Country -->
+        <div class="row">
+          <div class="mb-3 col-md-4">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" name="listing[price]" id="price" required class="form-control">
+          </div>
+          <div class="mb-3 col-md-8">
+            <label for="country" class="form-label">Country</label>
+            <input type="text" name="listing[country]" id="country" required class="form-control">
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="mb-3">
+          <label for="location" class="form-label">Location</label>
+          <input type="text" name="listing[location]" id="location" placeholder="Enter city or address" required class="form-control">
+        </div>
+
+        <!-- Hidden lat/lng -->
+        <input type="hidden" name="listing[lat]" id="lat">
+        <input type="hidden" name="listing[lng]" id="lng">
+
+        <!-- Map -->
+        <div id="map" style="height: 400px; width: 100%; border-radius: 10px;"></div>
+
+        <button type="submit" class="btn add-btn mt-3">Add Listing</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+let map = L.map('map').setView([20.5937, 78.9629], 5);
+let marker;
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+const locationInput = document.getElementById("location");
+locationInput.addEventListener("change", () => {
+  const address = locationInput.value.trim();
+  if (!address) return;
+
+  fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.length > 0) {
+        const lat = data[0].lat;
+        const lon = data[0].lon;
+        document.getElementById("lat").value = lat;
+        document.getElementById("lng").value = lon;
+
+        if (marker) map.removeLayer(marker);
+        marker = L.marker([lat, lon]).addTo(map);
+        map.setView([lat, lon], 12);
+      } else {
+        alert("Location not found!");
+      }
+    })
+    .catch(err => console.error("Error fetching location:", err));
+});
+</script>

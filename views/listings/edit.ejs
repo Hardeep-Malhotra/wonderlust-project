@@ -1,0 +1,128 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-8 offset-2">
+      <h3 class="mb-4">Edit Your Listing</h3>
+      <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" enctype="multipart/form-data" novalidate class="needs-validation">
+        
+        <!-- Title -->
+        <div class="mb-3 position-relative">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" name="listing[title]" id="title" value="<%= listing.title %>" required class="form-control">
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3 position-relative">
+          <label for="description" class="form-label">Description</label>
+          <textarea name="listing[description]" id="description" rows="4" required class="form-control"><%= listing.description %></textarea>
+        </div>
+
+        <!-- Category -->
+        <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <select name="listing[category]" id="category" class="form-select" required>
+            <option value="">Select a category</option>
+            <% const categories = [
+              "Trending","Rooms","Iconic Cities","Mountains","Castles","Amazing Pools",
+              "Camping","Tropical","Lakefront","Relaxation","Arctic","Pet Friendly",
+              "Urban","Beachfront","Historical","Tiny Homes","Art & Culture","Stargazing",
+              "Skiing","Luxury"
+            ]; %>
+            <% categories.forEach(cat => { %>
+              <option value="<%= cat %>" <%= listing.category === cat ? "selected" : "" %>><%= cat %></option>
+            <% }) %>
+          </select>
+        </div>
+
+        <!-- Original Image -->
+        <div class="mb-3">Original Listing Image<br>
+          <img src="<%= originalImageUrl %>" alt="Listing Image" style="max-width:100%; border-radius:0.5rem;">
+        </div>
+
+        <!-- Upload New Image -->
+        <div class="mb-3 position-relative">
+          <label for="image" class="form-label">Upload New Image (Optional)</label>
+          <input type="file" name="listing[image]" id="image" class="form-control">
+        </div>
+
+        <!-- Price + Country -->
+        <div class="row">
+          <div class="mb-3 col-md-4">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" name="listing[price]" id="price" value="<%= listing.price %>" required class="form-control">
+          </div>
+          <div class="mb-3 col-md-8">
+            <label for="country" class="form-label">Country</label>
+            <input type="text" name="listing[country]" id="country" value="<%= listing.country %>" required class="form-control">
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="mb-3">
+          <label for="location" class="form-label">Location</label>
+          <input type="text" name="listing[location]" id="location" value="<%= listing.location %>" required class="form-control">
+        </div>
+
+        <!-- Hidden lat/lng -->
+        <input type="hidden" name="listing[lat]" id="lat">
+        <input type="hidden" name="listing[lng]" id="lng">
+
+        <!-- Map -->
+        <div id="map" style="height: 400px; width: 100%; border-radius: 10px;"></div>
+
+        <button type="submit" class="btn btn-primary mt-3">Update Listing</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+  const latInput = document.getElementById("lat");
+  const lngInput = document.getElementById("lng");
+  const locationInput = document.getElementById("location");
+
+  let lat = parseFloat("<%= listing.lat ? listing.lat : 20.5937 %>");
+  let lng = parseFloat("<%= listing.lng ? listing.lng : 78.9629 %>");
+
+  const map = L.map('map').setView([lat, lng], 12);
+  const marker = L.marker([lat, lng], { draggable: true }).addTo(map);
+  latInput.value = lat;
+  lngInput.value = lng;
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  marker.on('dragend', () => {
+    const pos = marker.getLatLng();
+    latInput.value = pos.lat;
+    lngInput.value = pos.lng;
+  });
+
+  locationInput.addEventListener("blur", async () => {
+    const address = locationInput.value.trim();
+    if (!address) return;
+    const encodedAddress = encodeURIComponent(address);
+
+    try {
+      const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodedAddress}`);
+      const data = await res.json();
+
+      if (data.length > 0) {
+        const newLat = parseFloat(data[0].lat);
+        const newLng = parseFloat(data[0].lon);
+        marker.setLatLng([newLat, newLng]);
+        map.setView([newLat, newLng], 12);
+        latInput.value = newLat;
+        lngInput.value = newLng;
+      } else {
+        alert("Location not found!");
+      }
+    } catch (err) {
+      console.error("Error fetching location:", err);
+    }
+  });
+</script>
