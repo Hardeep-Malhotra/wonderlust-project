@@ -18,8 +18,16 @@ body {
 
 /* ===== Navbar ===== */
 .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* navbar content ke upar rahe */
     min-height: 5rem;
-    background-color: #fff;
+    background-color: #fff !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* halka shadow */
+}
+
+.navbar-collapse {
+    background-color: #fff !important;
 }
 
 .navbar-brand .fa-compass {
@@ -45,20 +53,20 @@ body {
     gap: 0.5rem;
     padding: 0.5rem;
     scroll-behavior: smooth;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 
 #filters {
     display: flex;
     gap: 0.5rem;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* smooth swipe on iOS */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 #filters::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
+    display: none;
 }
 
 .filter {
@@ -120,6 +128,7 @@ body {
     display: flex;
     align-items: center;
 }
+
 /* ===== Cards ===== */
 .card {
     border: none;
@@ -200,14 +209,15 @@ body {
 }
 
 .search-btn:hover {
-    background-color: #e72d54;
+    background-color: #ff385c;
+    color: #fff;
 }
 
 .search-inp {
     border-radius: 25px;
     padding: 0.5rem 1.5rem;
     font-size: 1rem;
-    border: 1px solid #ddd;
+    border: 1px solid #545454;
 }
 
 /* ===== Footer ===== */
@@ -278,27 +288,44 @@ footer, .f-info {
     color: #FF385C;
 }
 
-/* ===== Responsive ===== */
+/* ===== Responsive Fixes ===== */
 @media (max-width: 768px) {
-    #filters {
-        gap: 0.5rem;
-        padding: 0.5rem 0;
-    }
+    /* Filters */
+   #filters-container {
+    overflow-x: auto; /* scrollable */
+    -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
+    scrollbar-width: none; /* Firefox */
+  }
 
-    .filter i {
-        font-size: 1rem;
-    }
+  #filters-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+  }
 
-    .filter p {
-        font-size: 0.65rem;
-    }
-
+  #filters {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: nowrap; /* single row scroll */
+  }
     .arrow-btn {
-        display: none; /* hide arrow buttons on mobile */
+        display: none;
+    }
+
+    /* Cards layout fix (2 per row) */
+    .col-md-4, .listing-card {
+        flex: 0 0 50%;
+        max-width: 50%;
     }
 
     .card-img-top {
         max-height: 15rem;
+    }
+
+    .card-title {
+        font-size: 0.85rem; /* smaller title */
+    }
+
+    .card-text {
+        font-size: 0.7rem; /* smaller price/text */
     }
 
     .text-md-end {
@@ -319,15 +346,15 @@ footer, .f-info {
     }
 
     .card-img-top {
-        max-height: 10rem; /* smaller image */
+        max-height: 10rem;
     }
 
     .card-title {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
     }
 
     .card-text {
-        font-size: 0.75rem;
+        font-size: 0.65rem;
     }
 
     .add-btn, .search-btn {
@@ -341,4 +368,43 @@ footer, .f-info {
     .card-img-overlay {
         opacity: 0.5;
     }
+}
+/* /* Reviews horizontal scroll on mobile */
+
+@media (max-width: 576px) {
+  /* Wrapper scrollable */
+  .reviews-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+  }
+
+  .reviews-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Container horizontal layout */
+  .reviews-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: nowrap; /* horizontal scroll */
+  }
+
+  /* Fixed size review cards */
+  .review-card {
+    flex: 0 0 425.33px; /* width same as desktop */
+    height: 226px;       /* height same */
+  }
+
+  /* remove default Bootstrap row styling on mobile */
+  .reviews-container.row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .reviews-container.row > .col {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
