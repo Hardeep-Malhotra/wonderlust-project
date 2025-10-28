@@ -87,15 +87,11 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get("/demouser", async (req, res) => {
-    let fakeUser = new User({
-        email: "student@gmail.com",
-        username: "delta-student"
-    });
-
-    let registerUser = await User.register(fakeUser, "helloworld");
-    res.send(registerUser);
+app.get("/", (req, res) => {
+  res.redirect("/listings");
 });
+
+
 
 // ✅ Mount Routes
 app.use("/listings", listingRouter);

@@ -1,176 +1,105 @@
 <% layout('layouts/boilerplate') %>
 
+  <body>
+    <div id="filter-wrapper">
+      <button class="scroll-btn left-btn"><i class="fa-solid fa-less-than"></i></button>
+      <div id="filters-container">
+        <div id="filters">
+          <div class="filter active" data-category="Trending"><i class="fa-solid fa-fire"></i>
+            <p>Trending</p>
+          </div>
+          <div class="filter" data-category="Rooms"><i class="fa-solid fa-bed"></i>
+            <p>Rooms</p>
+          </div>
+          <div class="filter" data-category="Iconic Cities"><i class="fa-solid fa-mountain-city"></i>
+            <p>Iconic Cities</p>
+          </div>
+          <div class="filter" data-category="Mountains"><i class="fa-solid fa-mountain-sun"></i>
+            <p>Mountains</p>
+          </div>
+          <div class="filter" data-category="Castles"><i class="fa-brands fa-fort-awesome"></i>
+            <p>Castles</p>
+          </div>
+          <div class="filter" data-category="Amazing Pools"><i class="fa-solid fa-person-swimming"></i>
+            <p>Amazing Pools</p>
+          </div>
+          <div class="filter" data-category="Camping"><i class="fa-solid fa-campground"></i>
+            <p>Camping</p>
+          </div>
+          <div class="filter" data-category="Tropical"><i class="fa-solid fa-tree"></i>
+            <p>Tropical</p>
+          </div>
+          <div class="filter" data-category="Lakefront"><i class="fa-solid fa-water"></i>
+            <p>Lakefront</p>
+          </div>
+          <div class="filter" data-category="Relaxation"><i class="fa-solid fa-spa"></i>
+            <p>Relaxation</p>
+          </div>
+          <div class="filter" data-category="Arctic"><i class="fa-solid fa-snowflake"></i>
+            <p>Arctic</p>
+          </div>
+          <div class="filter" data-category="Pet Friendly"><i class="fa-solid fa-dog"></i>
+            <p>Pet Friendly</p>
+          </div>
+          <div class="filter" data-category="Urban"><i class="fa-solid fa-city"></i>
+            <p>Urban</p>
+          </div>
+          <div class="filter" data-category="Beachfront"><i class="fa-solid fa-umbrella-beach"></i>
+            <p>Beachfront</p>
+          </div>
+          <div class="filter" data-category="Historical"><i class="fa-solid fa-landmark"></i>
+            <p>Historical</p>
+          </div>
+          <div class="filter" data-category="Tiny Homes"><i class="fa-solid fa-house"></i>
+            <p>Tiny Homes</p>
+          </div>
+          <div class="filter" data-category="Art & Culture"><i class="fa-solid fa-palette"></i>
+            <p>Art & Culture</p>
+          </div>
+          <div class="filter" data-category="Stargazing"><i class="fa-solid fa-star"></i>
+            <p>Stargazing</p>
+          </div>
+          <div class="filter" data-category="Skiing"><i class="fa-solid fa-person-skiing"></i>
+            <p>Skiing</p>
+          </div>
+          <div class="filter" data-category="Luxury"><i class="fa-solid fa-water-ladder"></i>
+            <p>Luxury</p>
+          </div>
+        </div>
+      </div>
 
-  <div id="filters-container">
-    <div class="arrow-btn" id="left-arrow">
-      <i class="fa-solid fa-chevron-left"></i>
+      <button class="scroll-btn right-btn"><i class="fa-solid fa-greater-than"></i></button>
+
+      <div class="tax-toggle">
+        <div class="toggle-container">
+          <div class="form-check-reverse form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="filters">
-      <div class="filter active" data-category="Trending"><i class="fa-solid fa-fire"></i>
-        <p>Trending</p>
-      </div>
-      <div class="filter" data-category="Rooms"><i class="fa-solid fa-bed"></i>
-        <p>Rooms</p>
-      </div>
-      <div class="filter" data-category="Iconic Cities"><i class="fa-solid fa-mountain-city"></i>
-        <p>Iconic Cities</p>
-      </div>
-      <div class="filter" data-category="Mountains"><i class="fa-solid fa-mountain-sun"></i>
-        <p>Mountains</p>
-      </div>
-      <div class="filter" data-category="Castles"><i class="fa-brands fa-fort-awesome"></i>
-        <p>Castles</p>
-      </div>
-      <div class="filter" data-category="Amazing Pools"><i class="fa-solid fa-person-swimming"></i>
-        <p>Amazing Pools</p>
-      </div>
-      <div class="filter" data-category="Camping"><i class="fa-solid fa-campground"></i>
-        <p>Camping</p>
-      </div>
-      <div class="filter" data-category="Tropical"><i class="fa-solid fa-tree"></i>
-        <p>Tropical</p>
-      </div>
-      <div class="filter" data-category="Lakefront"><i class="fa-solid fa-water"></i>
-        <p>Lakefront</p>
-      </div>
-      <div class="filter" data-category="Relaxation"><i class="fa-solid fa-spa"></i>
-        <p>Relaxation</p>
-      </div>
-      <div class="filter" data-category="Arctic"><i class="fa-solid fa-snowflake"></i>
-        <p>Arctic</p>
-      </div>
-      <div class="filter" data-category="Pet Friendly"><i class="fa-solid fa-dog"></i>
-        <p>Pet Friendly</p>
-      </div>
-      <div class="filter" data-category="Urban"><i class="fa-solid fa-city"></i>
-        <p>Urban</p>
-      </div>
-      <div class="filter" data-category="Beachfront"><i class="fa-solid fa-umbrella-beach"></i>
-        <p>Beachfront</p>
-      </div>
-      <div class="filter" data-category="Historical"><i class="fa-solid fa-landmark"></i>
-        <p>Historical</p>
-      </div>
-      <div class="filter" data-category="Tiny Homes"><i class="fa-solid fa-house"></i>
-        <p>Tiny Homes</p>
-      </div>
-      <div class="filter" data-category="Art & Culture"><i class="fa-solid fa-palette"></i>
-        <p>Art & Culture</p>
-      </div>
-      <div class="filter" data-category="Stargazing"><i class="fa-solid fa-star"></i>
-        <p>Stargazing</p>
-      </div>
-      <div class="filter" data-category="Skiing"><i class="fa-solid fa-person-skiing"></i>
-        <p>Skiing</p>
-      </div>
-      <div class="filter" data-category="Luxury"><i class="fa-solid fa-water-ladder"></i>
-        <p>Luxury</p>
-      </div>
-    </div>
 
-
-    <div class="arrow-btn" id="right-arrow">
-      <i class="fa-solid fa-chevron-right"></i>
-    </div>
-
-    <div class="tax-toggle">
-      <div class="form-check-reverse form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
-        <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
-      </div>
-    </div>
-  </div>
-
-  <!-- Listings -->
-  <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 mt-3 g-4">
-    <% for (let listing of allListings) { %>
-      <div class="col" data-category="<%= listing.category %>">
-        <a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
-          <div class="card h-100">
-            <% const imgUrl=listing && listing.image && listing.image.url && listing.image.url.trim() ?
-              listing.image.url : '/images/default.jpg' ; %>
-              <img src="<%= imgUrl %>" class="card-img-top" alt="Listing_image" style="height: 20rem;">
-              <div class="card-body">
-                <h5 class="card-title">
+    <!-- Listings Section -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
+      <% for(let listing of allListings) { %>
+        <a href="/listings/<%= listing._id %>" class="listing-link" style="text-decoration:none;">
+          <div class="listing-card" data-category="<%= listing.category %>">
+            <img src="<%= listing.image.url %>" class="card-img-top listing-index-img" alt="listing-img">
+            <div class="listing-card-body">
+              <p class="listing-card-text">
+                <b>
                   <%= listing.title %>
-                </h5>
-                <p class="card-text">
-                  <%= (listing.price !==undefined && listing.price !==null) ? '₹' +
-                    Number(listing.price).toLocaleString('en-IN') : 'N/A' %>
-                    <i class="tax-info">&nbsp; &nbsp;+18% GST</i>
-                </p>
-              </div>
+                </b><br>
+                ₹<%= listing.price.toLocaleString("en-IN") %>
+                  <i class="tax-info">&nbsp;&nbsp;+18% GST</i>
+              </p>
+            </div>
           </div>
         </a>
-      </div>
-      <% } %>
 
+        <% } %>
+    </div>
+    <script src="/js/script.js"></script>
 
-  </div>
-
-
-  <script>
-  const filters = document.querySelectorAll("#filters .filter");
-  const filtersContainer = document.getElementById("filters");
-  const leftArrow = document.getElementById("left-arrow");
-  const rightArrow = document.getElementById("right-arrow");
-  const taxSwitch = document.getElementById("switchCheckDefault");
-
-  // --- STORE BASE PRICE ON LOAD ---
-  document.querySelectorAll(".card-text").forEach(card => {
-    const text = card.textContent.trim();
-    const match = text.match(/₹([\d,]+)/);
-    if (match) {
-      const basePrice = parseFloat(match[1].replace(/,/g, ""));
-      card.setAttribute("data-base-price", basePrice);
-    }
-  });
-
-  // --- FILTER LOGIC ---
-  filters.forEach(filter => {
-    filter.addEventListener("click", () => {
-      const category = filter.dataset.category;
-      filter.scrollIntoView({ behavior: "smooth", inline: "start" });
-      filters.forEach(f => f.classList.remove("active"));
-      filter.classList.add("active");
-
-      const listingCards = document.querySelectorAll(".row .col");
-      listingCards.forEach(card => {
-        const cardCategory = card.dataset.category;
-        card.style.display =
-          category === "Trending" || cardCategory === category ? "block" : "none";
-      });
-    });
-  });
-
-  // --- ARROW SCROLL ---
-  leftArrow.addEventListener("click", () => {
-    filtersContainer.scrollBy({ left: -150, behavior: "smooth" });
-  });
-  rightArrow.addEventListener("click", () => {
-    filtersContainer.scrollBy({ left: 150, behavior: "smooth" });
-  });
-
-  // --- TAX TOGGLE (FIXED VERSION) ---
-  const GST_RATE = 0.18; // 18%
-
-  taxSwitch.addEventListener("change", () => {
-    const cards = document.querySelectorAll(".card-text");
-
-    cards.forEach(card => {
-      const basePrice = parseFloat(card.getAttribute("data-base-price"));
-      if (!isNaN(basePrice)) {
-        const gst = basePrice * GST_RATE;
-        const totalPrice = basePrice + gst;
-
-        if (taxSwitch.checked) {
-          // Show total after tax
-          card.innerHTML = `₹${totalPrice.toLocaleString('en-IN')} <span class="text-muted">(incl. 18% GST)</span>`;
-        } else {
-          // Show base price
-          card.innerHTML = `₹${basePrice.toLocaleString('en-IN')} <i class="tax-info">&nbsp;&nbsp;+18% GST</i>`;
-        }
-      }
-    });
-  });
-</script>
+  </body>

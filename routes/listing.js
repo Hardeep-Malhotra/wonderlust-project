@@ -18,7 +18,7 @@ router.route("/")
 
 // ------------------ New Listing Form ------------------
 router.get("/new", isLoggedIn, listingController.renderNewForm);
-
+router.get("/search", listingController.search);
 // ------------------ Show Single Listing, Update Listing, Delete Listing ------------------
 router.route("/:id")
   .get(wrapAsync(listingController.showlisting))
@@ -32,7 +32,11 @@ router.route("/:id")
 router.get("/:id/edit", isLoggedIn, isOwner, wrapAsync(listingController.renderEditForm));
 
 
-
+router.get(
+  "/:id/reservelisting",
+  isLoggedIn,
+  wrapAsync(listingController.reserveListing)
+);
 
 module.exports = router;
 

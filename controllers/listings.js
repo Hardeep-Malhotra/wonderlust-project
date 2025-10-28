@@ -1,10 +1,6 @@
 const Listing = require("../models/listing");
 const ExpressError = require("../utils/ExpressError"); // agar custom error use kar rahe ho
 
-// module.exports.index = async (req, res) => {
-//     const allListings = await Listing.find({});
-//     res.render("listings/index", { allListings });
-// };
 module.exports.index = async (req, res) => {
   try {
     const { search } = req.query;
@@ -98,8 +94,47 @@ module.exports.updateListing = async (req, res) => {
     res.redirect(`/listings/${id}`);
 };
 
+module.exports.search = async (req, res) => {
+  let input = req.query.q ? req.query.q.trim().replace(/\s+/g, " ") : "";
+
+  if (input === "" || input === " ") {
+    req.flash("error", "Please enter search query!");
+    return res.redirect("/listings");
+  }
+
+  let data = input.split("");
+  let element = "";
+  let flag = false;
+
+  for (let index = 0; index < data.length; index++) {
+    if (index == 0 || flag) {
+      element = element + data[index].toUpperCase();
+    } else {
+      element = element + data[index].toLowerCase();
+    }
+    flag = data[index] == " ";
+  }
+
+  let allListings = await Listing.find({
+    title: { $regex: element, $options: "i" },
+  });
+
+  if (allListings.length != 0) {
+    res.locals.success = "Listings searched by Title!";
+    return res.render("listings/index.ejs", { allListings });
+  }
+
+  // (rest of your logic same...)
+};
+
+
 module.exports.destroyListing = async (req, res) => {
     await Listing.findByIdAndDelete(req.params.id);
     req.flash("success", "Listing Deleted!");
     res.redirect("/listings");
+};
+module.exports.reserveListing = async (req, res) => {
+  let { id } = req.params;
+  req.flash("success", "Reservation Details sent to your Email!");
+  res.redirect(`/listings/${id}`);
 };
