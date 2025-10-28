@@ -98,5 +98,5 @@ It features **Google & GitHub OAuth login**, **real-time location mapping** with
 | **Environment Variables** | Dotenv |
 | **Database Modeling** | Mongoose |
 
----
+
 
