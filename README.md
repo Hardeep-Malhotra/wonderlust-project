@@ -77,7 +77,7 @@ It features **Google & GitHub OAuth login**, **real-time location mapping** with
 ---
 
 ## ✍️ Author
-**@resmit-dholariya**
+**@Hardeep-Malhotra**
 
 > This project showcases my skills in **Full Stack Web Development** — from creating a responsive and attractive front-end to managing a robust back-end and database.  
 > WanderLust provides users with a seamless, secure, and interactive vacation rental experience.
@@ -100,4 +100,3 @@ It features **Google & GitHub OAuth login**, **real-time location mapping** with
 
 ---
 
-## 📂 Folder Structure (Example)
