@@ -1,61 +1,116 @@
-🌍 WanderLust Project 🏡
-Project Summary
-WanderLust is a comprehensive Full Stack Web Development project designed to facilitate the browsing and booking of vacation accommodations, including houses, villas, and farmhouses. This platform allows users to add their own properties to the listing, providing a diverse range of options for potential renters. Key features include a seamless booking system that simplifies the reservation process and real-time property location views via Mapbox API. To enhance user experience and security, the application supports fast login options through Google OAuth and GitHub OAuth. The application also boasts a dynamic server for responsive performance and an intuitive, aesthetically pleasing user interface, ensuring an engaging and efficient user experience.
 
-Front-end 🌐
-Technologies Used: HTML, CSS, JavaScript, Bootstrap, EJS
-Frameworks: React.js
-Features:
-📱 Responsive Design: Optimized for various devices
-🔍 User-friendly Interface: For searching and listing properties
-🗺️ Mapbox API Integration: For location-based search and property mapping
-Back-end 🛠️
-Technologies Used: Node.js, Express.js
-Features:
-🧩 RESTful API: Handles user interactions
-🔒 User Authentication and Authorization: Using Passport.js and JWT (JSON Web Tokens)
-📄 Endpoints: For property listing, login/sign up, and user management
-🏷️ Seamless Booking System: Simplifies the reservation process
-Database 🗄️
-Database Management System: MongoDB Atlas
-Features:
-🗂️ Structured Database Schema: For efficient data management
-🔍 Database Queries: To retrieve and store property and user information
-Cloudinary Image Storage ☁️
-Image Hosting: All listing images are securely stored on Cloudinary, providing reliable and efficient image hosting. This ensures that images are easily accessible, optimized for performance, and enhance the overall user experience.
-Additional Features 🌟
-🔍 Search and Filter: Advanced system for property listings
-⭐ User Reviews and Ratings: Feature for users to review and rate properties
-🔐 Security: Ensured through encryption and data validation
-🗺️ Map Integration: For location-based features
-📊 Client/Server-side Validations: Thorough validations to ensure smooth operation
-🎨 EJS Templates: For modular routing and dynamic views
-🍪 Cookies and Sessions: For user-friendly authentication and notifications
-🏗️ MVC Architecture: For scalable and organized code
-💾 Multer: For handling file uploads
-Deployment 🚀
-The WanderLust project has been deployed using Render, connected with MongoDB Atlas for database management.
 
-Live Application: WanderLust Project
-Authors ✍️
-@resmit-dholariya
-This WanderLust project showcases my proficiency in full-stack web development, from creating an engaging front-end to managing the back-end and database components. It allows users to search for properties and experience the key functionalities of a vacation rental platform in a seamless and secure manner.
+🌍 WanderLust — Full Stack Web Application
+🏡 Project Overview
+WanderLust is a full-stack web development project designed to simplify vacation accommodation browsing and booking.
+Users can explore a wide range of listings such as houses, villas, and farmhouses — or even add their own properties to the platform.
+It features an elegant interface, secure authentication, a seamless booking system, and real-time property mapping using the Mapbox API.
 
-🛠️ Technologies & Packages Used:
+💻 Front-End
+🌐 Technologies Used
+HTML, CSS, JavaScript, Bootstrap
+
+EJS Templates
+
+React.js Framework
+
+✨ Key Features
+📱 Responsive Design: Fully optimized for all devices
+
+🔍 User-Friendly Interface: Simplified search and property listing experience
+
+🗺️ Mapbox API Integration: Real-time map and location-based search
+
+⚙️ Back-End
+🛠️ Technologies Used
+Node.js, Express.js
+
+🚀 Key Features
+🧩 RESTful API: Handles all CRUD operations and user interactions
+
+🔒 User Authentication & Authorization: Implemented with Passport.js and JWT (JSON Web Tokens)
+
+📄 API Endpoints: For property listing, login/signup, and user management
+
+🏷️ Booking System: Simple and secure property reservation process
+
+🗄️ Database
+💾 Technology
+MongoDB Atlas
+
+📊 Key Features
+🗂️ Structured Schema Design: Optimized for scalability and efficiency
+
+🔍 Efficient Queries: For storing and retrieving user and property data
+
+☁️ Cloudinary Integration
+Cloud Storage: All property images stored securely on Cloudinary
+
+⚡ Optimized Performance: Fast, reliable, and high-quality image rendering
+
+🌟 Additional Features
+🔍 Advanced Search & Filter System
+
+⭐ User Reviews & Ratings
+
+🔐 Data Encryption & Validation
+
+🗺️ Map Integration for Location Views
+
+📊 Client & Server-side Validations
+
+🎨 EJS Templates for Dynamic Views
+
+🍪 Cookies & Sessions for Authentication
+
+🏗️ MVC Architecture for Scalability
+
+💾 Multer for File Upload Handling
+
+🚀 Deployment
+
+Hosted On: Render
+
+Database: Connected with MongoDB Atlas
+
+🔗 Live Demo: [WanderLust Application Link]
+
+✍️ Author
+
+@Hardeep-Malhotra
+
+This project demonstrates proficiency in Full Stack Web Development, showcasing a seamless blend of front-end design, back-end logic, and database management — delivering a smooth, secure, and interactive vacation rental experience.
+
+🛠️ Technologies & Packages Used
 
 MongoDB
+
 Express.js
+
 Node.js
-Passport.js for Authentication
-Cloudinary for Image Storage
-Connect Flash for Flash Messages
-Connect Mongo for Session Storage
-Cookie Parser for Parsing Cookies
-Dotenv for Environment Variables
-EJS for Template Rendering
-Express Session for Session Handling
-Joi for Data Validation
-Mongoose for MongoDB Object Modeling
-Multer for File Uploads
-Passport Local for Local Authentication
-Passport Local Mongoose for Mongoose-Specific Authentication
+
+Passport.js (Authentication)
+
+Cloudinary (Image Hosting)
+
+Connect Flash (Flash Messages)
+
+Connect Mongo (Session Storage)
+
+Cookie Parser
+
+Dotenv (Environment Variables)
+
+EJS (Template Rendering)
+
+Express Session
+
+Joi (Data Validation)
+
+Mongoose (ODM for MongoDB)
+
+Multer (File Uploads)
+
+Passport Local
+
+Passport Local Mongoose
