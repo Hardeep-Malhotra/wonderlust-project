@@ -46,9 +46,27 @@ module.exports.listingSchema = Joi.object({
     image: Joi.object({ url: Joi.string().allow("", null) }).optional()
   }).required()
 });
+// module.exports.reviewSchema = Joi.object({
+//   review: Joi.object({
+//     rating: Joi.number().required().min(1).max(5),
+//     comment: Joi.string().required()
+//   }).required()
+// });
+
 module.exports.reviewSchema = Joi.object({
   review: Joi.object({
-    rating: Joi.number().required().min(1).max(5),
-    comment: Joi.string().required()
-  }).required()
+    rating: Joi.number().required().min(1).max(5).messages({
+      "number.min": "Rating must be at least 1 star",
+      "number.max": "Rating cannot exceed 5 stars",
+    }),
+    comment: Joi.string()
+      .required()
+      .trim() // Spaces hata dega
+      .min(3) // Kam se kam 3 characters
+      .messages({
+        "string.empty": "Review comment cannot be empty",
+        "string.min": "Comment is too short",
+      }),
+  }).required(),
 });
+
